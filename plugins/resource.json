@@ -1,0 +1,81 @@
+[
+{
+	"nombre":"MasterClass",
+	"logo":"logo_dos.png",
+	"descripcion":"En Kdoce estoy a cargo del equipo de desarrollo de software en donde he logrado elaborar un sistema de gestión académica, actualmente trabajamos con al rededor de 200.000 usuarios.",
+	"tecnologia":[
+		"Php","Mysql", "Rutinas", "JavaScript", "AngularJS", "Rest", "WHM", "Git"
+	],
+	"width":"70",
+	"height":"28",
+	"url":"http://www.masterclass.cl"
+
+},
+{
+	"nombre":"WebClass",
+	"logo":"logo_uno.png",
+	"descripcion":"En webclass desarrolle las 2 primeras versiones del software iniciando con la tecnologia de moodle y evolucionando a un sistema independiente. Tambien estuve a cargo del área de desarrollo de software.",
+	"tecnologia":[
+		"Php5","Mysql", "JQuery", "WHM"
+	],
+	"width":"70",
+	"height":"28",
+	"url":"http://www.webclass.com"
+},
+{
+	"nombre":"Mesko",
+	"logo":"logo_mesko.jpg",
+	"descripcion":"En guitarras mesko llevo al rededor de 8 años trabajando en el desarrollo de su sistema de gestión comercial y el catalogo de productos online. Actualmente desarrollamos la versión mobile an AngularJS con REST.",
+	"tecnologia":[
+		"Php","Mysql", "Rutinas", "JavaScript", "AngularJS", "Rest", "WHM", "Git"
+	],
+	"width":"70",
+	"height":"28",
+	"url":"http://www.mesko.cl"
+},
+{
+	"nombre":"CPA Newland",
+	"logo":"logo_newland.jpg",
+	"descripcion":"Este proyecto fue desarrollado para mantener la comunicación del centro de padres con los apoderados del colegio y además lograr publicar las fotografías de los distintos eventos que se han realizado.",
+	"tecnologia":[
+		"Php","Mysql", "JavaScript"
+	],
+	"width":"35",
+	"height":"28",
+	"url":"http://www.cpanewland.cl"
+},
+{
+	"nombre":"Villa Maria Academy",
+	"logo":"logo_villamaria.jpg",
+	"descripcion":"En el colegio desarrollamos un taller de expresión corporal e identidad cultural en dónde el cuerpo docente y administrativo participo constantemente logrando desarrollar unas 5 obras folcloricas.",
+	"tecnologia":[
+		"Artes Escenicas", "Planificación", "Liderazgo", "Trabajo de equipo"
+	],
+	"width":"35",
+	"height":"28",
+	"url":"http://www.villamaria.cl"
+},
+{
+	"nombre":"Pedro de Valdivia",
+	"logo":"logo_cpv_web.png",
+	"descripcion":"En el Pedro de Valdivia cumplia un rol de docente en el área de las tecnologías con los alumnos de 7mo y 8vo básico, logrando participar de la unidad de calidad y desarrollo, la que estaba a cargo de la organización de los 4 colegios PDV.",
+	"tecnologia":[
+		"Tecnología", "Php5", "MySql", "JavaScript", "Matemática"
+	],
+	"width":"70",
+	"height":"28",
+	"url":"http://www.pdv.cl"
+},
+{
+	"nombre":"Vtiger CRM",
+	"logo":"logo_vtiger.png",
+	"descripcion":"Vtiger es un gestor CRM para complementar las etapas de la venta, he realizado 2 implementaciones de forma exitosa para un total de 120 usuarios en formato web e intranet.",
+	"tecnologia":[
+		"Php5", "MySql", "JavaScript", "Linux", "Bash", "Cron", "CSV"
+	],
+	"width":"35",
+	"height":"35",
+	"url":"https://www.vtiger.com/"
+}
+
+]
