@@ -76,6 +76,17 @@
 	"width":"35",
 	"height":"35",
 	"url":"https://www.vtiger.com/"
+},
+{
+	"nombre":"Odoo ERP",
+	"logo":"odoo_logo.svg",
+	"descripcion":"Odoo es un sistema ERP OpenSource de sarrollado en python",
+	"tecnologia":[
+		"Python", "Postgress", "Linux"
+	],
+	"width":"100",
+	"height":"40",
+	"url":"https://www.odoo.com/es_ES/"
 }
 
 ]
