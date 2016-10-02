@@ -1,9 +1,9 @@
 var app = angular.module('app', ['ngRoute', 'ngAnimate', 'chart.js']);
 app.config(["$routeProvider", function($routeProvider){
 	$routeProvider
-	.when('/', {templateUrl:'templates/home.html',controller: 'homeController', title:'@mzarallop - Redusoft'})
-	.when('/habilidades', {templateUrl:'templates/skills.html',controller: 'habilidadesController', title:'@mzarallop - Habilidades'})
-	.when('/trabajos', {templateUrl:'templates/trabajos.html',controller: 'trabajosController', title:'@mzarallop - Proyectos que he desarrollado'})
+	.when('/', {title:'Inicio',templateUrl:'templates/home.html',controller: 'homeController', title:'@mzarallop - Redusoft'})
+	.when('/habilidades', {title:'Habilidades',templateUrl:'templates/skills.html',controller: 'habilidadesController', title:'@mzarallop - Habilidades'})
+	.when('/trabajos', {title:'Trabajos',templateUrl:'templates/trabajos.html',controller: 'trabajosController', title:'@mzarallop - Proyectos que he desarrollado'})
 	.otherwise({redirecTo:'/'});
 }])
 .run(function($location, $rootScope) {
