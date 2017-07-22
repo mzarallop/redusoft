@@ -2,8 +2,6 @@ var gulp = require('gulp');
 var concat = require('gulp-concat');
 var minifyCss = require('gulp-minify-css');
 var htmlify = require('gulp-angular-htmlify');
-/*var imagemin = require('gulp-imagemin');
-var pngquant = require('imagemin-pngquant');*/
 var autoprefixer = require('gulp-autoprefixer');
 var ngmin = require('gulp-ngmin');
 /*
@@ -55,15 +53,4 @@ gulp.task('concatjs', function() {
     .pipe(gulp.dest('dist/plugins'));
 });
 
-
-gulp.task('imglify', function () {
-    return gulp.src('imagenes/*')
-        .pipe(imagemin({
-            progressive: true,
-            svgoPlugins: [{removeViewBox: false}],
-            use: [pngquant()]
-        }))
-        .pipe(gulp.dest('dist/imagenes'));
-});
-
-gulp.task('default', ['scripts', 'cssprefix', 'minify-css', 'concatcss', 'imglify']);
+gulp.task('default', ['scripts', 'cssprefix', 'minify-css', 'concatcss', 'concatjs']);

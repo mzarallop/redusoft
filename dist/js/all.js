@@ -1,11 +1,14 @@
 var app = angular.module('app', ['ngRoute', 'ngAnimate', 'chart.js']);
 app.config(["$routeProvider", function($routeProvider){
+
+
 	$routeProvider
 	.when('/', {templateUrl:'templates/home.html',controller: 'homeController', title:'@mzarallop - Redusoft'})
 	.when('/habilidades', {templateUrl:'templates/skills.html',controller: 'habilidadesController', title:'@mzarallop - Habilidades'})
 	.when('/trabajos', {templateUrl:'templates/trabajos.html',controller: 'trabajosController', title:'@mzarallop - Proyectos que he desarrollado'})
 	.otherwise({redirecTo:'/'});
 }])
+
 .run(function($location, $rootScope) {
 	$rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
 	     //tweets
@@ -23,9 +26,6 @@ app.config(["$routeProvider", function($routeProvider){
           "showInteraction": false,
           "lang": 'es'
         };
-
-        //escritorio
-        twitterFetcher.fetch(config_desktop);
         //mobile
 	 	$rootScope.host = 'http://'+$location.host()+'/';
 
@@ -34,7 +34,7 @@ app.config(["$routeProvider", function($routeProvider){
 	    }
 
 	    if(current.loadedTemplateUrl === 'templates/home.html'){
-	    	random_twitter('textTweet')
+	    	
 	    }
 
 	    if(current.loadedTemplateUrl === 'templates/skills.html'){
@@ -53,7 +53,7 @@ app.config(["$routeProvider", function($routeProvider){
     }
 }]);
 
-app.controller("homeController", ["$scope",function($scope){
+app.controller("homeController", ["$scope, $window",function($scope, $window){
 	$scope.pageClass='page-home'
 }]);
 

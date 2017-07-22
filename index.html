@@ -30,7 +30,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#/">@Inicio </a>
+          <a class="navbar-brand" data-ng-click="feed.run()" ng-href="#/">@Inicio </a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
@@ -44,9 +44,9 @@
     </nav>
   <!-- contenido del body-->
 
-    <div class="container page {{pageClass}}" data-ng-view>
+    <div class="container-fluid page {{pageClass}}" data-ng-view></div>
+    
 
-</div>
   <!-- fin del body -->
 </body>
 <script>
@@ -54,7 +54,6 @@
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
   ga('create', 'UA-66874665-1', 'auto');
   ga('send', 'pageview');
 
@@ -62,11 +61,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<script src="node_modules/angular-google-analytics/dist/angular-google-analytics.js"></script>
 <!-- load angular via CDN -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular-route.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/holder/2.8.1/holder.min.js"></script>
 <script src="dist/plugins/all_plugin.js"></script>
 <script src="dist/js/all.js"></script>
+
 </html>

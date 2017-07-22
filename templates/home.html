@@ -1,12 +1,10 @@
-<div class="container">
-    <div class="row no-gutter">
+<div class="container-fluid">
+    <div class="row-fluid">
         <h1 class="hidden-xs">Bienvenidos</h1>
         <div class="col-xs-12 hidden-md hidden-sm hidden-lg">
             <div id="head_twitter">
             <img src="imagenes/twitter_small.png" alt="" width="30"> @mzarallop
             </div>
-            <div class="textTweet" id="textTweet"></div>
-            <div id="footer_twitter"></div>
         </div>
         <div class="col-md-6 col-xs-12" style="text-align:justify">
 
@@ -41,13 +39,38 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6 hidden-xs">
-            <div id="head_twitter">
-                <img src="imagenes/twitter_small.png" alt="" width="30"> @mzarallop
-            </div>
-            <div class="textTweet" id="textTweet"></div>
-            <div id="footer_twitter"></div>
+        <div class="col-md-6 col-xs-12">
+        <div class="row-fluid">
+                
+                <ul id="instafeed" class="instagram_timeline"></ul>
+                <button class="btn" id="load-more">Cargar Mas</button>
         </div>
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    var loadButton = document.getElementById('load-more');
+    var feed = new Instafeed({
+        get: 'user',
+        tagName:'redusoft',
+        userId:'216780693',        
+        clientId: '58a10eb440a04b949784d86c5037f89a',
+        accessToken:'216780693.58a10eb.9f31d3ccf44a48c9b723de1dc454ef56',
+        template: '<li class="instragram_list"><a href="{{link}}"><img src="{{image}}" width="100%"/></a><br>{{caption}}<br>{{likes}}</li>',
+        sortBy:'random',
+        resolution:'standard_resolution',
+        limit:1,
+        after: function() {
+            // disable button if no more results to load
+            if (!this.hasNext()) {
+                loadButton.setAttribute('disabled', 'disabled');
+            }
+        }
+        
+    });
+
+    loadButton.addEventListener('click', function(){feed.next();});
+
+    feed.run();
+</script>

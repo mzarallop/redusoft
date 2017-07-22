@@ -9,7 +9,7 @@ app.controller("baseCtr", ["$scope", "$location", function($scope, $location){
     }
 }]);
 
-app.controller("homeController", ["$scope",function($scope){
+app.controller("homeController", ["$scope, $window",function($scope, $window){
 	$scope.pageClass='page-home'
 }]);
 
