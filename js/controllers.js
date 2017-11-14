@@ -9,7 +9,7 @@ app.controller("baseCtr", ["$scope", "$location", function($scope, $location){
     }
 }]);
 
-app.controller("homeController", ["$scope, $window",function($scope, $window){
+app.controller("homeController", ["$scope", function($scope){
 	$scope.pageClass='page-home'
 }]);
 
@@ -40,5 +40,13 @@ app.controller("trabajosController", ["$scope", "workService",function($scope, w
   dir.then(function(data){
     $scope.trabajos = data;
   });
+
+}]);
+
+app.controller("colegiosController", ["$scope", "colegiosFac", function($scope, colegiosFac){
+  
+  $scope.pageClass='page-colegios'
+  //$scope.colegios = colegiosFac.get();
+  
 
 }]);

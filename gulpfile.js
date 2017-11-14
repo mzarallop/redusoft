@@ -1,9 +1,9 @@
 var gulp = require('gulp');
 var concat = require('gulp-concat');
 var minifyCss = require('gulp-minify-css');
-var htmlify = require('gulp-angular-htmlify');
 var autoprefixer = require('gulp-autoprefixer');
 var ngmin = require('gulp-ngmin');
+var htmlmin = require('gulp-htmlmin');
 /*
 
 gulp.task('compress', function() {
@@ -13,15 +13,15 @@ gulp.task('compress', function() {
     .pipe(gulp.dest('dist'));
 });*/
 
-
-gulp.task('htmlify', function() {
-    gulp.src('templates/*.html')
-        .pipe(htmlify())
-        .pipe(gulp.dest('dist/template/'));
+gulp.task('minify-html', function() {
+  return gulp.src('templates/*.html')
+    .pipe(htmlmin({collapseWhitespace: true}))
+    .pipe(gulp.dest('dist/templates/'));
 });
 
 gulp.task('scripts', function() {
-  return gulp.src(['js/app.js', 'js/controllers.js', 'js/services.js'])
+  return gulp.src('js/*.js')
+  
     .pipe(concat('all.js', {newLine: ';'}))
     .pipe(gulp.dest('dist/js'));
 });
@@ -53,4 +53,12 @@ gulp.task('concatjs', function() {
     .pipe(gulp.dest('dist/plugins'));
 });
 
-gulp.task('default', ['scripts', 'cssprefix', 'minify-css', 'concatcss', 'concatjs']);
+gulp.task('default', ['minify-html','scripts', 'cssprefix', 'minify-css', 'concatcss', 'concatjs']);
+gulp.task('dev', ()=>{
+  gulp.watch('templates/*.html', ['minify-html']),
+  gulp.watch('js/*.js', ['scripts']),
+  gulp.watch('css/*.css', ['cssprefix']),
+  gulp.watch('css/*.css', ['minify-css']),
+  gulp.watch('dist/css/*.css', ['concatcss']),
+  gulp.watch('plugins/*.js', ['concatjs'])
+});
