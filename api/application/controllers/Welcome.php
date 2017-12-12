@@ -1,23 +1,30 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Welcome extends CI_Controller {
 
 	function __construct(){
+		
 		parent::__construct();
-		$this->load->model('colegiosModel');
+		$this->load->model('Colegios_model');
+		header('Access-Control-Allow-Origin: *');
 		header('Content-Type: application/json');
 	}
 
 	public function index()
 	{	
-		$dato = $this->colegiosModel->traer_colegios(1);
-		print_r(json_encode($dato));
+		$rbd = $this->uri->segment(3);
+		$dato = $this->Colegios_model->traer_colegios($rbd);
+		echo json_encode($dato);
 	}
 
 	public function listaColegios()
 	{
-		$dato = $this->colegiosModel->traer_colegios(1);
-		print_r(json_encode($dato));
+		$rbd = $this->uri->segment(3);
+		$dato = $this->Colegios_model->traer_colegios($rbd);
+		echo json_encode($dato);
+	}
+
+	public function pruebas(){
 	}
 }

@@ -1,11 +1,21 @@
-app.factory('colegiosFac', ['$resource', function($resource){
+app.factory('ColegiosFac', ['$resource', function($resource){
 
-	return $resource(api, {id:'@id'},
+	return $resource(api+'welcome/index/:rbd', {rbd:'@_rbd'},
+		{ 'get':    {method:'GET', isArray:true, params:{rbd:0}},
+		  'save':   {method:'POST', isArray:true},
+		  'query':   {method:'POST', isArray:true},
+		  'remove': {method:'DELETE'}
+		}
+	)
+}])
+
+app.factory('FichaColegios', ['$resource', function($resource){
+
+	return $resource(api+'welcome/index/:rbd', {rbd:'@_rbd'},
 		{ 'get':    {method:'GET', isArray:true},
-		  'save':   {method:'POST'},
-		  'query':  {method:'GET', isArray:true},
-		  'remove': {method:'DELETE'},
-		  'delete': {method:'DELETE'} 
+		  'save':   {method:'POST', isArray:true},
+		  'query':   {method:'POST', isArray:true},
+		  'remove': {method:'DELETE'}
 		}
 	)
 }])

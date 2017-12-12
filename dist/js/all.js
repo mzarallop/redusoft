@@ -1,11 +1,13 @@
-var api = 'http://max.app/api/'
-var app = angular.module('app', ['ngRoute', 'ngAnimate', 'chart.js']);
+var api = 'http://max.test/api/'
+
+var app = angular.module('app', ['ngRoute', 'ngAnimate', 'chart.js', 'ngResource']);
 app.config(["$routeProvider", function($routeProvider){
 	$routeProvider
 	.when('/', {templateUrl:'dist/templates/home.html',controller: 'homeController', title:'@mzarallop - Redusoft'})
 	.when('/habilidades', {templateUrl:'dist/templates/skills.html',controller: 'habilidadesController', title:'@mzarallop - Habilidades'})
 	.when('/trabajos', {templateUrl:'dist/templates/trabajos.html',controller: 'trabajosController', title:'@mzarallop - Proyectos que he desarrollado'})
 	.when('/colegios', {templateUrl:'dist/templates/colegios.html',controller: 'colegiosController', title:'@mzarallop - Colegios'})
+	.when('/fichacolegios/:rbd/', {templateUrl:'dist/templates/fichacolegios.html',controller: 'fichaController', title:'@mzarallop - Ficha Colegios'})
 	.otherwise({redirecTo:'/'});
 }])
 
@@ -14,14 +16,9 @@ app.config(["$routeProvider", function($routeProvider){
 	     //mobile
 	 	$rootScope.host = 'http://'+$location.host()+'/';
 
-	    if (current.hasOwnProperty('$$route')) {
-	        document.title = current.$$route.title;
-	    }
-
 	})
 })
 ;app.controller("baseCtr", ["$scope", "$location", function($scope, $location){
-
 	$scope.select_menu = function(){
         setTimeout(function(){
             $(".navbar-toggle").trigger('click', function(){
@@ -32,11 +29,11 @@ app.config(["$routeProvider", function($routeProvider){
 }]);
 
 app.controller("homeController", ["$scope", function($scope){
-	$scope.pageClass='page-home'
+	$scope.pageClass='page-home';
 }]);
 
 app.controller("habilidadesController", ["$scope",function($scope){
-	$scope.pageClass='page-habilidades'
+	$scope.pageClass='page-habilidades';
 
 	$scope.labels_general = ["FrontEnd", "BackEnd"];
   	$scope.data_general = [80,95];
@@ -56,7 +53,7 @@ app.controller("habilidadesController", ["$scope",function($scope){
 }]);
 
 app.controller("trabajosController", ["$scope", "workService",function($scope, workService){
-	$scope.pageClass='page-trabajos'
+	$scope.pageClass='page-trabajos';
 
   var dir = workService.trabajos()
   dir.then(function(data){
@@ -64,22 +61,44 @@ app.controller("trabajosController", ["$scope", "workService",function($scope, w
   });
 
 }]);
-
-app.controller("colegiosController", ["$scope", "colegiosFac", function($scope, colegiosFac){
+app.controller("colegiosController", ["$scope", "ColegiosFac","FichaColegios", "$routeParams", function($scope, ColegiosFac, FichaColegios, $routeParams){
   
-  $scope.pageClass='page-colegios'
-  //$scope.colegios = colegiosFac.get();
-  
-
+  $scope.pageClass='page-colegios';
+  $scope.buscar_colegio = function(e){
+       var list_col = ColegiosFac.get({rbd:this.rbd});  
+         list_col.$promise.then(function(data){
+            $scope.listar_colegios = JSON.parse(JSON.stringify(data));
+         }) 
+  }
+ 
 }]);
-;app.factory('colegiosFac', ['$resource', function($resource){
 
-	return $resource(api, {id:'@id'},
+app.controller("fichaController", ["$scope", "FichaColegios", "$routeParams", function($scope, FichaColegios, $routeParams){
+  
+  $scope.pageClass='page-fichacolegio';
+  var fichaColegio = FichaColegios.get({rbd:$routeParams.rbd});
+      fichaColegio.$promise.then(function(data){
+        $scope.ficha = JSON.parse(JSON.stringify(data));
+  })
+}]);
+;app.factory('ColegiosFac', ['$resource', function($resource){
+
+	return $resource(api+'welcome/index/:rbd', {rbd:'@_rbd'},
+		{ 'get':    {method:'GET', isArray:true, params:{rbd:0}},
+		  'save':   {method:'POST', isArray:true},
+		  'query':   {method:'POST', isArray:true},
+		  'remove': {method:'DELETE'}
+		}
+	)
+}])
+
+app.factory('FichaColegios', ['$resource', function($resource){
+
+	return $resource(api+'welcome/index/:rbd', {rbd:'@_rbd'},
 		{ 'get':    {method:'GET', isArray:true},
-		  'save':   {method:'POST'},
-		  'query':  {method:'GET', isArray:true},
-		  'remove': {method:'DELETE'},
-		  'delete': {method:'DELETE'} 
+		  'save':   {method:'POST', isArray:true},
+		  'query':   {method:'POST', isArray:true},
+		  'remove': {method:'DELETE'}
 		}
 	)
 }]);/*!
@@ -2725,5 +2744,30 @@ app.service('workService',['$http','$q', function($http, $q){
 
     return {
         trabajos:trabajos
+    }
+}]);
+
+app.service('colegiosService',['$http','$q', function($http, $q){
+    var deferred = $q.defer();
+    
+    function listarColegios(dato){
+        $http.get(api+"welcome/index/"+dato, {cache:true})
+        .success(function(data){
+            deferred.resolve(data);
+        });
+        return deferred.promise;
+    }
+
+    function fichaColegio(rbd){
+        $http.get(api+"welcome/listarColegios/"+rbd, {cache:true})
+        .success(function(data){
+            deferred.resolve(data);
+        });
+        return deferred.promise;
+    }
+
+    return {
+        colegios:listarColegios,
+        fichacolegio:fichaColegio
     }
 }]);

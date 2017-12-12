@@ -1,4 +1,4 @@
-<div class="container-fluid"><div class="row-fluid"><h1 class="hidden-xs">Bienvenidos</h1><div class="col-md-6 col-xs-12" style="text-align:justify"><figure style="text-align:center"><img ng-src="https://instagram.fscl6-1.fna.fbcdn.net/t51.2885-19/s320x320/18646045_262852640847675_9020894793051406336_a.jpg" alt="" class="foto_perfil"></figure><p></p><p>Hola, Mi nombre es <b>Maximiliano Zarallo</b> ¡soy un amante de los desafios! Me encanta la musica y el baile.</p><p>Actualmente estoy dedicando el 100% de mi tiempo a solucionar grandes problematicas de la educación de nuestro país.</p><p>Mi exepriencia como profesor y desarrollador de software me ha permitido plasmar mi visión de como ordenar los procesos pedagógicos, facilitando y optimizando el tiempo de los profesionales de la educación.</p><p>Con el tiempo me he transformado en un programador hábil, lo que me permite trabajar con varios lenguajes de programación y aprender nuevas tendencias sin mayores complicaciones.</p><p>Cuando me inicie en el mundo de la programación tuve un gran desafio y hoy mirando el pasado me siento profundamente orgulloso de todo lo que hasta hoy he realizado, siento esa magia por crear proyectos de valor con impacto social, me gustaria que más jovenes se involucreen en la solución de problemas cotidianos a través de la programación.</p><p>Actualmente sigo en el área del desarrollo en un proyecto relacionado con la educación, la experiencia ha sido increible, recorrimos todo el país para estar cercano a la realidad de nuestros clientes</p></div><div class="col-md-6 col-xs-12"><div class="row-fluid"><a href="" id="load-more">ver más...</a><ul id="instafeed" class="instagram_timeline"></ul></div></div><div class="col-md-6 col-xs-12"><!-- REDES --><div class="row-fluid"><div class="col-md-3 col-xs-6" style="text-align:center"><a href="http://github.com/mzarallop/" target="_new" class=""><i class="fa fa-5x fa-github"></i></a></div><div class="col-md-3 col-xs-6" style="text-align:center"><a href="https://cl.linkedin.com/pub/maximiliano-zarallo/33/48a/254" target="_new"><i class="fa fa-5x fa-linkedin"></i></a></div><div class="col-md-3 col-xs-6" style="text-align:center"><a href="tel:+56984178721"><i class="fa fa-5x fa-mobile"></i></a></div></div></div></div></div><script type="text/javascript">var loadButton = document.getElementById('load-more');
+<div class="container-fluid"><div class="row-fluid"><h1 class="hidden-xs">Bienvenidos</h1><div class="col-md-6 col-xs-12" style="text-align:justify"><p>Hola, Mi nombre es <b>Maximiliano Zarallo</b> ¡soy un amante de los desafios! Me encanta la musica y el baile.</p><p>Actualmente estoy dedicando el 100% de mi tiempo a solucionar grandes problematicas de la educación de nuestro país.</p><p>Mi exepriencia como profesor y desarrollador de software me ha permitido plasmar mi visión de como ordenar los procesos pedagógicos, facilitando y optimizando el tiempo de los profesionales de la educación.</p><p>Con el tiempo me he transformado en un programador hábil, lo que me permite trabajar con varios lenguajes de programación y aprender nuevas tendencias sin mayores complicaciones.</p><p>Cuando me inicie en el mundo de la programación tuve un gran desafio y hoy mirando el pasado me siento profundamente orgulloso de todo lo que hasta hoy he realizado, siento esa magia por crear proyectos de valor con impacto social, me gustaria que más jovenes se involucreen en la solución de problemas cotidianos a través de la programación.</p><p>Actualmente sigo en el área del desarrollo en un proyecto relacionado con la educación, la experiencia ha sido increible, recorrimos todo el país para estar cercano a la realidad de nuestros clientes</p></div><div class="col-md-6 col-xs-12"><div class="row-fluid"><a href="" id="load-more">ver más...</a><ul id="instafeed" class=""></ul></div></div><div class="col-md-6 col-xs-12"><!-- REDES --><div class="row-fluid"><div class="col-md-3 col-xs-6" style="text-align:center"><a href="http://github.com/mzarallop/" target="_new" class=""><i class="fa fa-5x fa-github"></i></a></div><div class="col-md-3 col-xs-6" style="text-align:center"><a href="https://cl.linkedin.com/pub/maximiliano-zarallo/33/48a/254" target="_new"><i class="fa fa-5x fa-linkedin"></i></a></div><div class="col-md-3 col-xs-6" style="text-align:center"><a href="tel:+56984178721"><i class="fa fa-5x fa-mobile"></i></a></div></div></div></div></div><script type="text/javascript">var loadButton = document.getElementById('load-more');
     var caja = document.getElementById('instafeed');
     var feed = new Instafeed({
         get: 'user',
@@ -6,22 +6,22 @@
         userId:'216780693',        
         clientId: '58a10eb440a04b949784d86c5037f89a',
         accessToken:'216780693.58a10eb.9f31d3ccf44a48c9b723de1dc454ef56',
-        template: '<li class="instragram_list"><a href="{{link}}"><img src="{{image}}" width="100%"/></a><br>{{caption}}<br>{{likes}}</li>',
-        sortBy:'random',
-        resolution:'standard_resolution',
-        limit:1,
-        after: function() {
+        template: '<li class="row-fluid"><a class="col-md-12" href="{{link}}"><img width="100%" src="{{image}}" alt="{{caption}}"/></a></li>',
+        //sortBy:'random',
+        //resolution:'standard_resolution',
+        //limit:30,
+       /* after: function() {
             // disable button if no more results to load
             if (!this.hasNext()) {
                 loadButton.setAttribute('disabled', 'disabled');
             }
-        }
+        }*/
         
     });
 
-    loadButton.addEventListener('click', function(){
+   /* loadButton.addEventListener('click', function(){
         caja.innerHTML = '';
         feed.next();
-    });
+    });*/
 
     feed.run();</script>

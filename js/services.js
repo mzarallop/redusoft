@@ -27,3 +27,28 @@ app.service('workService',['$http','$q', function($http, $q){
         trabajos:trabajos
     }
 }]);
+
+app.service('colegiosService',['$http','$q', function($http, $q){
+    var deferred = $q.defer();
+    
+    function listarColegios(dato){
+        $http.get(api+"welcome/index/"+dato, {cache:true})
+        .success(function(data){
+            deferred.resolve(data);
+        });
+        return deferred.promise;
+    }
+
+    function fichaColegio(rbd){
+        $http.get(api+"welcome/listarColegios/"+rbd, {cache:true})
+        .success(function(data){
+            deferred.resolve(data);
+        });
+        return deferred.promise;
+    }
+
+    return {
+        colegios:listarColegios,
+        fichacolegio:fichaColegio
+    }
+}]);

@@ -3,11 +3,6 @@
         <h1 class="hidden-xs">Bienvenidos</h1>
         
         <div class="col-md-6 col-xs-12" style="text-align:justify">
-
-            <figure style="text-align:center">
-                <img ng-src="https://instagram.fscl6-1.fna.fbcdn.net/t51.2885-19/s320x320/18646045_262852640847675_9020894793051406336_a.jpg" alt="" class="foto_perfil">
-            </figure>
-            <p></p>
             <p>
             Hola, Mi nombre es <b>Maximiliano Zarallo</b> ¡soy un amante de los desafios! Me encanta la musica y el baile.</p>
             <p>Actualmente estoy dedicando el 100% de mi tiempo a solucionar grandes problematicas de la educación de nuestro país.</p>
@@ -24,8 +19,7 @@
         <div class="col-md-6 col-xs-12">
             <div class="row-fluid">
                     <a href="" id="load-more">ver más...</a>
-                    <ul id="instafeed" class="instagram_timeline">
-                        
+                    <ul id="instafeed" class="">  
                     </ul>
                     
             </div>
@@ -57,23 +51,23 @@
         userId:'216780693',        
         clientId: '58a10eb440a04b949784d86c5037f89a',
         accessToken:'216780693.58a10eb.9f31d3ccf44a48c9b723de1dc454ef56',
-        template: '<li class="instragram_list"><a href="{{link}}"><img src="{{image}}" width="100%"/></a><br>{{caption}}<br>{{likes}}</li>',
-        sortBy:'random',
-        resolution:'standard_resolution',
-        limit:1,
-        after: function() {
+        template: '<li class="row-fluid"><a class="col-md-12" href="{{link}}"><img width="100%" src="{{image}}" alt="{{caption}}"/></a></li>',
+        //sortBy:'random',
+        //resolution:'standard_resolution',
+        //limit:30,
+       /* after: function() {
             // disable button if no more results to load
             if (!this.hasNext()) {
                 loadButton.setAttribute('disabled', 'disabled');
             }
-        }
+        }*/
         
     });
 
-    loadButton.addEventListener('click', function(){
+   /* loadButton.addEventListener('click', function(){
         caja.innerHTML = '';
         feed.next();
-    });
+    });*/
 
     feed.run();
 </script>
