@@ -1,7 +1,12 @@
-var api = 'http://max.test/api/'
+var api = window.location.origin+'/api/'
 
-var app = angular.module('app', ['ngRoute', 'ngAnimate', 'chart.js', 'ngResource']);
-app.config(["$routeProvider", function($routeProvider){
+var app = angular.module('app', ['ngRoute', 'ngAnimate', 'chart.js', 'ngResource', 'ngStorage','angular-loading-bar']);
+app.config(["$routeProvider","cfpLoadingBarProvider", function($routeProvider,cfpLoadingBarProvider){
+	cfpLoadingBarProvider.parentSelector = '#loading-bar-container';
+	cfpLoadingBarProvider.includeSpinner = false;
+	cfpLoadingBarProvider.includeBar = false;
+	cfpLoadingBarProvider.spinnerTemplate = '<div><span class="fa fa-spinner">Cargando...</div>';
+	cfpLoadingBarProvider.latencyThreshold = 500;
 	$routeProvider
 	.when('/', {templateUrl:'dist/templates/home.html',controller: 'homeController', title:'@mzarallop - Redusoft'})
 	.when('/habilidades', {templateUrl:'dist/templates/skills.html',controller: 'habilidadesController', title:'@mzarallop - Habilidades'})
@@ -35,7 +40,7 @@ app.controller("homeController", ["$scope", function($scope){
 app.controller("habilidadesController", ["$scope",function($scope){
 	$scope.pageClass='page-habilidades';
 
-	$scope.labels_general = ["FrontEnd", "BackEnd"];
+	 $scope.labels_general = ["FrontEnd", "BackEnd"];
   	$scope.data_general = [80,95];
 
 
@@ -46,7 +51,7 @@ app.controller("habilidadesController", ["$scope",function($scope){
   	];
 
   	$scope.labels_back = ['PHP', 'MySQL', 'PL/Sql', 'Pg', 'Linux', 'API'];
-  	$scope.series = ['FrontEnd'];
+  	$scope.series = ['Backend'];
     $scope.data_back = [
     		[100, 95, 80, 80, 100, 95]
   	];
@@ -61,31 +66,53 @@ app.controller("trabajosController", ["$scope", "workService",function($scope, w
   });
 
 }]);
-app.controller("colegiosController", ["$scope", "ColegiosFac","FichaColegios", "$routeParams", function($scope, ColegiosFac, FichaColegios, $routeParams){
+app.controller("colegiosController", ["$scope", "ColegiosFac","$localStorage", "$routeParams", function($scope, ColegiosFac, $localStorage, $routeParams){
   
   $scope.pageClass='page-colegios';
-  $scope.buscar_colegio = function(e){
-       var list_col = ColegiosFac.get({rbd:this.rbd});  
-         list_col.$promise.then(function(data){
+
+  var dato_rbd = $localStorage.rbd;
+  var list_col = ColegiosFac.get({rbd:dato_rbd});  
+            list_col.$promise.then(function(data){
             $scope.listar_colegios = JSON.parse(JSON.stringify(data));
-         }) 
+  })
+
+  $scope.buscar_colegio = function(){
+          if($scope.rbd != undefined){
+          dato_rbd = 0;
+
+                  if($scope.rbd === $localStorage.rbd){
+                    dato_rbd = $scope.rbd;
+                  }else{
+                    $localStorage.rbd = $scope.rbd;
+                    console.log('no son iguales', $scope.rbd, $localStorage.rbd)
+                    dato_rbd = $scope.rbd;                   
+                  }
+                var list_col = ColegiosFac.get({rbd:dato_rbd});  
+                list_col.$promise.then(function(data){
+                $scope.listar_colegios = JSON.parse(JSON.stringify(data));
+                })
+          }  
   }
  
 }]);
 
-app.controller("fichaController", ["$scope", "FichaColegios", "$routeParams", function($scope, FichaColegios, $routeParams){
+app.controller("fichaController", ["$scope", "FichaColegios", "$routeParams", "$window", function($scope, FichaColegios, $routeParams, $window){
   
   $scope.pageClass='page-fichacolegio';
   var fichaColegio = FichaColegios.get({rbd:$routeParams.rbd});
       fichaColegio.$promise.then(function(data){
         $scope.ficha = JSON.parse(JSON.stringify(data));
   })
+
+  $scope.back = function() { 
+    $window.history.back(-1);
+  };
 }]);
 ;app.factory('ColegiosFac', ['$resource', function($resource){
 
 	return $resource(api+'welcome/index/:rbd', {rbd:'@_rbd'},
 		{ 'get':    {method:'GET', isArray:true, params:{rbd:0}},
-		  'save':   {method:'POST', isArray:true},
+		  'save':   {method:'POST', isArray:true, params:{rbd:'@_rbd'}},
 		  'query':   {method:'POST', isArray:true},
 		  'remove': {method:'DELETE'}
 		}
@@ -94,7 +121,7 @@ app.controller("fichaController", ["$scope", "FichaColegios", "$routeParams", fu
 
 app.factory('FichaColegios', ['$resource', function($resource){
 
-	return $resource(api+'welcome/index/:rbd', {rbd:'@_rbd'},
+	return $resource(api+'welcome/fichaColegio/:rbd', {rbd:'@_rbd'},
 		{ 'get':    {method:'GET', isArray:true},
 		  'save':   {method:'POST', isArray:true},
 		  'query':   {method:'POST', isArray:true},

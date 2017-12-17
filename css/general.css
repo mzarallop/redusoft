@@ -1,13 +1,9 @@
 html, body{
   height:100%;
   background:transparent;
+  font-family: monospace;
 }
-div, p{
-	font-family: 'Slabo 27px', serif;
-}
-h1{
-	font-family: 'Francois One', sans-serif;
-}
+
 
 .foto_perfil {
     width: 150px;
@@ -322,6 +318,23 @@ div.button {
 .instagram_timeline{
 margin:0;padding: 0;
 }
+#instafeed{
+    padding: 0;margin:0;
+}
 li.instragram_list {
-    vertical-align: top;display: inline-block;list-style: none;margin: 5px;
+    vertical-align: top;display: inline-block;list-style: none;margin: 1px; width: 32%;
+}
+span.boton_volver {
+    display: block;
+    background-color: #ff0082;
+    padding: 10px;
+    text-align: center;
+    font-size: 2em;
+    font-family: monospace;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+#loading-bar .bar {
+  position: relative;
 }

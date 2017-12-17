@@ -7,20 +7,20 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <!-- Latest compiled and minified CSS -->
-<link href='http://fonts.googleapis.com/css?family=Slabo+27px' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Slabo+27px|Francois+One' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css">
 <!-- Optional theme -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap-theme.min.css">
 <link rel="stylesheet" href="dist/css/bootstrap-social.css">
 <link rel="stylesheet" href="dist/css/angular-chart.css">
 <link rel="stylesheet" href="dist/css/docs.css">
-<link rel="stylesheet" href="dist/css/font-awesome.css">
+ <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.css' type='text/css' media='all' />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" />
 <link rel="stylesheet" href="dist/css/general.css">
+
 <title data-ng-controller="">@mzarallop</title>
 </head>
 <body ng-app="app">
-
+    <div id="loading-bar-container"></div>
     <nav class="navbar nav-red navbar-fixed-top" data-ng-controller="baseCtr">
       <div class="container">
         <div class="navbar-header">
@@ -62,11 +62,15 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js"></script>
 <!-- load angular via CDN -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular-route.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.10/ngStorage.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-resource/1.4.3/angular-resource.min.js"></script>
+ <script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.js'></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/holder/2.8.1/holder.min.js"></script>
+
 <script src="dist/plugins/all_plugin.js"></script>
 <script src="dist/js/all.js"></script>
 <!--<script src="js/app.js"></script>

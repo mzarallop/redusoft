@@ -14,14 +14,16 @@ class Welcome extends CI_Controller {
 	public function index()
 	{	
 		$rbd = $this->uri->segment(3);
+		$rbd = urldecode($rbd);
 		$dato = $this->Colegios_model->traer_colegios($rbd);
 		echo json_encode($dato);
 	}
 
-	public function listaColegios()
+	public function fichaColegio()
 	{
 		$rbd = $this->uri->segment(3);
-		$dato = $this->Colegios_model->traer_colegios($rbd);
+		$rbd = urldecode($rbd);
+		$dato = $this->Colegios_model->ficha_colegio($rbd);
 		echo json_encode($dato);
 	}
 

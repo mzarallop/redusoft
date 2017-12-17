@@ -1,7 +1,12 @@
-var api = 'http://max.test/api/'
+var api = window.location.origin+'/api/'
 
-var app = angular.module('app', ['ngRoute', 'ngAnimate', 'chart.js', 'ngResource']);
-app.config(["$routeProvider", function($routeProvider){
+var app = angular.module('app', ['ngRoute', 'ngAnimate', 'chart.js', 'ngResource', 'ngStorage','angular-loading-bar']);
+app.config(["$routeProvider","cfpLoadingBarProvider", function($routeProvider,cfpLoadingBarProvider){
+	cfpLoadingBarProvider.parentSelector = '#loading-bar-container';
+	cfpLoadingBarProvider.includeSpinner = false;
+	cfpLoadingBarProvider.includeBar = false;
+	cfpLoadingBarProvider.spinnerTemplate = '<div><span class="fa fa-spinner">Cargando...</div>';
+	cfpLoadingBarProvider.latencyThreshold = 500;
 	$routeProvider
 	.when('/', {templateUrl:'dist/templates/home.html',controller: 'homeController', title:'@mzarallop - Redusoft'})
 	.when('/habilidades', {templateUrl:'dist/templates/skills.html',controller: 'habilidadesController', title:'@mzarallop - Habilidades'})
