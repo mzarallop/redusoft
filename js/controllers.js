@@ -15,8 +15,8 @@ app.controller("homeController", ["$scope", function($scope){
 app.controller("habilidadesController", ["$scope",function($scope){
 	$scope.pageClass='page-habilidades';
 
-	 $scope.labels_general = ["FrontEnd", "BackEnd"];
-  	$scope.data_general = [80,95];
+	$scope.labels_general = ["FrontEnd", "BackEnd"];
+  $scope.data_general = [80,95];
 
 
 	$scope.labels = ['HTML5', 'CSS', 'JS', 'Angular', 'JSON'];
@@ -77,8 +77,16 @@ app.controller("fichaController", ["$scope", "FichaColegios", "$routeParams", "$
   var fichaColegio = FichaColegios.get({rbd:$routeParams.rbd});
       fichaColegio.$promise.then(function(data){
         $scope.ficha = JSON.parse(JSON.stringify(data));
+         $scope.colors = ['#ff8e72'];
+        //grafica SNED
+        $scope.labels = $scope.ficha[0].sned.titulos;
+        $scope.series = ['SNED'];
+        $scope.data = [$scope.ficha[0].sned.data];
+        //grafica promedio
+        $scope.label_avg = ['Promedio', 'Total'];
+        $scope.series_avd = ['Promedios'];
+        $scope.data_avg = [$scope.ficha[0].sned.promedio];
   })
-
   $scope.back = function() { 
     $window.history.back(-1);
   };

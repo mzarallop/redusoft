@@ -1,12 +1,16 @@
 var api = window.location.origin+'/api/'
 
 var app = angular.module('app', ['ngRoute', 'ngAnimate', 'chart.js', 'ngResource', 'ngStorage','angular-loading-bar']);
-app.config(["$routeProvider","cfpLoadingBarProvider", function($routeProvider,cfpLoadingBarProvider){
+app.config(["$routeProvider","cfpLoadingBarProvider", "ChartJsProvider",function($routeProvider,cfpLoadingBarProvider, ChartJsProvider){
+	
 	cfpLoadingBarProvider.parentSelector = '#loading-bar-container';
 	cfpLoadingBarProvider.includeSpinner = false;
 	cfpLoadingBarProvider.includeBar = false;
 	cfpLoadingBarProvider.spinnerTemplate = '<div><span class="fa fa-spinner">Cargando...</div>';
 	cfpLoadingBarProvider.latencyThreshold = 500;
+	
+	ChartJsProvider.setOptions({ colors : [ '#46BFBD','#803690', '#00ADF9', '#DCDCDC', '#FDB45C', '#949FB1', '#4D5360'] });
+
 	$routeProvider
 	.when('/', {templateUrl:'dist/templates/home.html',controller: 'homeController', title:'@mzarallop - Redusoft'})
 	.when('/habilidades', {templateUrl:'dist/templates/skills.html',controller: 'habilidadesController', title:'@mzarallop - Habilidades'})
@@ -40,8 +44,8 @@ app.controller("homeController", ["$scope", function($scope){
 app.controller("habilidadesController", ["$scope",function($scope){
 	$scope.pageClass='page-habilidades';
 
-	 $scope.labels_general = ["FrontEnd", "BackEnd"];
-  	$scope.data_general = [80,95];
+	$scope.labels_general = ["FrontEnd", "BackEnd"];
+  $scope.data_general = [80,95];
 
 
 	$scope.labels = ['HTML5', 'CSS', 'JS', 'Angular', 'JSON'];
@@ -102,8 +106,16 @@ app.controller("fichaController", ["$scope", "FichaColegios", "$routeParams", "$
   var fichaColegio = FichaColegios.get({rbd:$routeParams.rbd});
       fichaColegio.$promise.then(function(data){
         $scope.ficha = JSON.parse(JSON.stringify(data));
+         $scope.colors = ['#ff8e72'];
+        //grafica SNED
+        $scope.labels = $scope.ficha[0].sned.titulos;
+        $scope.series = ['SNED'];
+        $scope.data = [$scope.ficha[0].sned.data];
+        //grafica promedio
+        $scope.label_avg = ['Promedio', 'Total'];
+        $scope.series_avd = ['Promedios'];
+        $scope.data_avg = [$scope.ficha[0].sned.promedio];
   })
-
   $scope.back = function() { 
     $window.history.back(-1);
   };

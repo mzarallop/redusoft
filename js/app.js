@@ -1,12 +1,16 @@
 var api = window.location.origin+'/api/'
 
 var app = angular.module('app', ['ngRoute', 'ngAnimate', 'chart.js', 'ngResource', 'ngStorage','angular-loading-bar']);
-app.config(["$routeProvider","cfpLoadingBarProvider", function($routeProvider,cfpLoadingBarProvider){
+app.config(["$routeProvider","cfpLoadingBarProvider", "ChartJsProvider",function($routeProvider,cfpLoadingBarProvider, ChartJsProvider){
+	
 	cfpLoadingBarProvider.parentSelector = '#loading-bar-container';
 	cfpLoadingBarProvider.includeSpinner = false;
 	cfpLoadingBarProvider.includeBar = false;
 	cfpLoadingBarProvider.spinnerTemplate = '<div><span class="fa fa-spinner">Cargando...</div>';
 	cfpLoadingBarProvider.latencyThreshold = 500;
+	
+	ChartJsProvider.setOptions({ colors : [ '#46BFBD','#803690', '#00ADF9', '#DCDCDC', '#FDB45C', '#949FB1', '#4D5360'] });
+
 	$routeProvider
 	.when('/', {templateUrl:'dist/templates/home.html',controller: 'homeController', title:'@mzarallop - Redusoft'})
 	.when('/habilidades', {templateUrl:'dist/templates/skills.html',controller: 'habilidadesController', title:'@mzarallop - Habilidades'})

@@ -106,9 +106,34 @@ class Colegios_model extends CI_Model{
 	}
 
 	function buscar_sned($rbd){
+		
 		$this->db->from('core_cliente_sned a');
-		$this->db->where('RBD', $rbd);
-		return $this->db->get()->result_array();
+		$this->db->where('a.RBD', $rbd);
+		$a = $this->db->get();
+		$total = $a->num_rows();
+		if($total>0){
+
+			$row = $a->result_array();
+
+			$datos = array(
+				"titulos"=>array("Efectvidad", "Superación", "Inicia", "Mejorar", "Integración", "Igualdad"),
+				"data"=>array(
+					floatval($row[0]['EFECTIVR']), 
+					floatval($row[0]['SUPERAR']), 
+					floatval($row[0]['INICIAR']), 
+					floatval($row[0]['MEJORAR']), 
+					floatval($row[0]['INTEGRAR']), 
+					floatval($row[0]['IGUALDR'])), 
+				"total"=>$total,
+				"promedio"=>array(floatval($row[0]['INDICER']), 100)
+			);
+
+			return $datos;
+
+		}else{
+			return array("total"=>0);
+		}
+		
 	}
 }
 
