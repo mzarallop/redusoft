@@ -135,6 +135,15 @@ class Colegios_model extends CI_Model{
 		}
 		
 	}
+
+	function mostrar_regionalizacion(){
+		$regiones = $this->db->get('core_regiones_detalle')->result_array();
+		$comunas = $this->db->get('core_comunas')->result_array();
+		return array("regiones"=>$regiones, "comunas"=>$comunas);
+	}
+
+
+
 }
 
  ?>

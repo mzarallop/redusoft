@@ -1,4 +1,6 @@
-var api = window.location.origin+'/api/'
+var api = 'http://redusoft.cl/api/'
+
+//http://redusoft.cl/api/
 
 var app = angular.module('app', ['ngRoute', 'ngAnimate', 'chart.js', 'ngResource', 'ngStorage','angular-loading-bar']);
 app.config(["$routeProvider","cfpLoadingBarProvider", "ChartJsProvider",function($routeProvider,cfpLoadingBarProvider, ChartJsProvider){
@@ -23,7 +25,7 @@ app.config(["$routeProvider","cfpLoadingBarProvider", "ChartJsProvider",function
 .run(function($location, $rootScope) {
 	$rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
 	     //mobile
-	 	$rootScope.host = 'http://'+$location.host()+'/';
+	 	$rootScope.host = window.location.origin+'/';
 
 	})
 })
@@ -121,7 +123,6 @@ app.controller("fichaController", ["$scope", "FichaColegios", "$routeParams", "$
   };
 }]);
 ;app.factory('ColegiosFac', ['$resource', function($resource){
-
 	return $resource(api+'welcome/index/:rbd', {rbd:'@_rbd'},
 		{ 'get':    {method:'GET', isArray:true, params:{rbd:0}},
 		  'save':   {method:'POST', isArray:true, params:{rbd:'@_rbd'}},
@@ -132,7 +133,6 @@ app.controller("fichaController", ["$scope", "FichaColegios", "$routeParams", "$
 }])
 
 app.factory('FichaColegios', ['$resource', function($resource){
-
 	return $resource(api+'welcome/fichaColegio/:rbd', {rbd:'@_rbd'},
 		{ 'get':    {method:'GET', isArray:true},
 		  'save':   {method:'POST', isArray:true},
@@ -2788,7 +2788,14 @@ app.service('workService',['$http','$q', function($http, $q){
 
 app.service('colegiosService',['$http','$q', function($http, $q){
     var deferred = $q.defer();
-    
+    function mostrarRegionalizacion(){
+        $http.get(api+'welcome/regionalizacion/', {cache:true})
+        .success(function(data){
+            deferred.resolve(data);
+        })
+        return  deferred.promise;
+    }
+
     function listarColegios(dato){
         $http.get(api+"welcome/index/"+dato, {cache:true})
         .success(function(data){
@@ -2805,8 +2812,10 @@ app.service('colegiosService',['$http','$q', function($http, $q){
         return deferred.promise;
     }
 
+
     return {
         colegios:listarColegios,
-        fichacolegio:fichaColegio
+        fichacolegio:fichaColegio,
+        regionalizacion: mostrarRegionalizacion
     }
 }]);

@@ -30,7 +30,14 @@ app.service('workService',['$http','$q', function($http, $q){
 
 app.service('colegiosService',['$http','$q', function($http, $q){
     var deferred = $q.defer();
-    
+    function mostrarRegionalizacion(){
+        $http.get(api+'welcome/regionalizacion/', {cache:true})
+        .success(function(data){
+            deferred.resolve(data);
+        })
+        return  deferred.promise;
+    }
+
     function listarColegios(dato){
         $http.get(api+"welcome/index/"+dato, {cache:true})
         .success(function(data){
@@ -47,8 +54,10 @@ app.service('colegiosService',['$http','$q', function($http, $q){
         return deferred.promise;
     }
 
+
     return {
         colegios:listarColegios,
-        fichacolegio:fichaColegio
+        fichacolegio:fichaColegio,
+        regionalizacion: mostrarRegionalizacion
     }
 }]);

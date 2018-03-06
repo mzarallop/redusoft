@@ -1,4 +1,6 @@
-var api = window.location.origin+'/api/'
+var api = 'http://redusoft.cl/api/'
+
+//http://redusoft.cl/api/
 
 var app = angular.module('app', ['ngRoute', 'ngAnimate', 'chart.js', 'ngResource', 'ngStorage','angular-loading-bar']);
 app.config(["$routeProvider","cfpLoadingBarProvider", "ChartJsProvider",function($routeProvider,cfpLoadingBarProvider, ChartJsProvider){
@@ -23,7 +25,7 @@ app.config(["$routeProvider","cfpLoadingBarProvider", "ChartJsProvider",function
 .run(function($location, $rootScope) {
 	$rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
 	     //mobile
-	 	$rootScope.host = 'http://'+$location.host()+'/';
+	 	$rootScope.host = window.location.origin+'/';
 
 	})
 })
