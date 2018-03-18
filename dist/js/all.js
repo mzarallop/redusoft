@@ -1,4 +1,4 @@
-var api = 'http://redusoft.cl/api/'
+var api = 'http://max.edutech.cl/api/'
 
 //http://redusoft.cl/api/
 
