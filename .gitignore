@@ -1,0 +1,4 @@
+#ignorar configuracion de bases de datos
+api/application/config/database.php
+#ignorar la carpeta de imagenes
+node_modules/*
