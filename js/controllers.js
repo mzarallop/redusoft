@@ -14,16 +14,17 @@ app.controller("homeController", ["$scope", function($scope){
 
 app.controller("habilidadesController", ["$scope",function($scope){
 	$scope.pageClass='page-habilidades';
-
-	$scope.labels_general = ["FrontEnd", "BackEnd"];
-  $scope.data_general = [80,95];
-
-
 	$scope.labels = ['HTML5', 'CSS', 'JS', 'Angular', 'JSON'];
   	$scope.series = ['FrontEnd'];
     $scope.data = [
     		[95, 90, 95, 80, 100]
   	];
+
+    $scope.labels_blandas = ['Comunicación', 'Creatividad', 'Colaboración', 'Analisis', 'Resolución', 'Adaptación', 'Empatía'];
+    $scope.series_blandas = ['FrontEnd'];
+    $scope.data_blandas = [
+        [80, 95, 100, 100, 90, 100, 80]
+    ];
 
   	$scope.labels_back = ['PHP', 'MySQL', 'PL/Sql', 'Pg', 'Linux', 'API'];
   	$scope.series = ['Backend'];
