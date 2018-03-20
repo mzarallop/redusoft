@@ -1,10 +1,14 @@
 
-    <div class="row-fluid">
+    <div class="container">
         <h1>Area de proyectos</h1>
-        <div class="row-fluid" style="">
-        <input type="text" id="query" data-ng-model="buscador" placeholder="Filtrar...">
-            <ul id="experiencia">
-                <li ng-animate="'animate'" data-ng-repeat="trabajo in trabajos | filter:buscador">
+        <div class="row" style="">
+        <p>
+        <input type="text" id="query" class="form-control" data-ng-model="buscador" placeholder="Filtrar...">
+        </p>
+
+
+            <ul id="experiencia" class="row-fluid">
+                <li data-ng-repeat="trabajo in trabajos | filter:buscador" ng-animate="'animate'"  class="col-xs-12 col-md-3 col-lg-3">
                     <div class="cabecera">
                         <div class="logo">
                             <img data-ng-src="imagenes/{{trabajo.logo}}" alt="" width="{{trabajo.width}}" height="{{trabajo.height}}">

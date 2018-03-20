@@ -118,19 +118,15 @@ ul#habilidades{
 =========================================================
 */
 
-#experiencia{margin: 0;padding: 0;list-style: none;width: 100%;color:#7E7E7E;}
+#experiencia{margin: 0;padding: 0;list-style: none;color:#7E7E7E;}
 #experiencia li {
     cursor: pointer;
     list-style: none;
-    width: 24%;
     display: inline-block;
     vertical-align: top;
     border: 1px solid rgba(128, 128, 128, 0.18);
     padding: 20px;
-    margin: 5px;
     transition: 0.5s ease all;
-    min-width: 250px;
-    /* border-radius: 5px; */
 }
 #experiencia li:hover{
   border:1px solid rgba(128, 128, 128, 0.43);
