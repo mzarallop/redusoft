@@ -1,5 +1,18 @@
 [
 {
+	"nombre":"Kdoce",
+	"logo":"logo_kdoce.png",
+	"descripcion":"Actualemente me estoy desarrollando en el área de ventas terreno para la empresa Kdoce, en donde he tenido que asumir la cobertura en regiones representando a la empresa logrando un alto desempeño como asesor pedagogico de cara a los clientes (Colegios), debido a esto he podido generar un aporte anual de 2,5M USD a la empresa.",
+	"tecnologia":[
+		"Negociación","Asesoria", "Fidelización", "SEP", "Rendiciones", "Planificación", "Estratega", "Marketing"
+	],
+	"width":"70",
+	"height":"28",
+	"url":"http://www.kdoce.cl",
+	"imagen":"ventas.jpg"
+
+},
+{
 	"nombre":"MasterClass",
 	"logo":"logo_dos.png",
 	"descripcion":"En Kdoce estoy a cargo del equipo de desarrollo de software en donde he logrado elaborar un sistema de gestión académica, actualmente trabajamos con al rededor de 200.000 usuarios.",
