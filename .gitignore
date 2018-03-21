@@ -2,3 +2,5 @@
 api/application/config/database.php
 #ignorar la carpeta de imagenes
 node_modules/*
+js/*
+plugins/*

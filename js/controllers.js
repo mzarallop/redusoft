@@ -92,3 +92,7 @@ app.controller("fichaController", ["$scope", "FichaColegios", "$routeParams", "$
     $window.history.back(-1);
   };
 }]);
+
+app.controller("contactoController", ["$scope", function($scope){
+  
+}])

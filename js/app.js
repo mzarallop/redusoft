@@ -1,7 +1,5 @@
 var api = window.location.origin+'/api/'
 
-//http://redusoft.cl/api/
-
 var app = angular.module('app', ['ngRoute', 'ngAnimate', 'chart.js', 'ngResource', 'ngStorage','angular-loading-bar']);
 app.config(["$routeProvider","cfpLoadingBarProvider", "ChartJsProvider",function($routeProvider,cfpLoadingBarProvider, ChartJsProvider){
 	
@@ -19,6 +17,7 @@ app.config(["$routeProvider","cfpLoadingBarProvider", "ChartJsProvider",function
 	.when('/trabajos', {templateUrl:'dist/templates/trabajos.html',controller: 'trabajosController', title:'@mzarallop - Proyectos que he desarrollado'})
 	.when('/colegios', {templateUrl:'dist/templates/colegios.html',controller: 'colegiosController', title:'@mzarallop - Colegios'})
 	.when('/fichacolegios/:rbd/', {templateUrl:'dist/templates/fichacolegios.html',controller: 'fichaController', title:'@mzarallop - Ficha Colegios'})
+	.when('/contacto', {templateUrl:'dist/templates/contacto.html', controller:'contactoController', title:'@mzarallop - Contacto'})
 	.otherwise({redirecTo:'/'});
 }])
 

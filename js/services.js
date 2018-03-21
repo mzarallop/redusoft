@@ -61,3 +61,16 @@ app.service('colegiosService',['$http','$q', function($http, $q){
         regionalizacion: mostrarRegionalizacion
     }
 }]);
+
+app.service('contactoService', ['$http, $q', function($http, $q){
+    var deferred = $q.defer();
+    function enviarMensaje(datos){
+        $http.post(api+'welcome/contacto/', datos, {cache:true})
+        .success(function(data){deferred.resolve(data);})
+        return deferred.promise;
+    }
+
+    return {
+        contactar: enviarMensaje
+    }
+}])

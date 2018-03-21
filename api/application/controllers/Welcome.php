@@ -34,4 +34,9 @@ class Welcome extends CI_Controller {
 		$dato = $this->Colegios_model->mostrar_regionalizacion();
 		echo json_encode($dato);
 	}
+
+	public function contacto(){
+		$dato = $this->Colegios_model->contacto($_POST);
+		echo json_encode($dato);
+	}
 }

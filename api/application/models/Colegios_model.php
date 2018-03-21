@@ -142,6 +142,10 @@ class Colegios_model extends CI_Model{
 		return array("regiones"=>$regiones, "comunas"=>$comunas);
 	}
 
+	function contacto($mensaje){
+		$this->db->insert('core_mensajes', $mensaje);
+	}
+
 
 
 }

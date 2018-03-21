@@ -1,7 +1,5 @@
 var api = window.location.origin+'/api/'
 
-//http://redusoft.cl/api/
-
 var app = angular.module('app', ['ngRoute', 'ngAnimate', 'chart.js', 'ngResource', 'ngStorage','angular-loading-bar']);
 app.config(["$routeProvider","cfpLoadingBarProvider", "ChartJsProvider",function($routeProvider,cfpLoadingBarProvider, ChartJsProvider){
 	
@@ -19,6 +17,7 @@ app.config(["$routeProvider","cfpLoadingBarProvider", "ChartJsProvider",function
 	.when('/trabajos', {templateUrl:'dist/templates/trabajos.html',controller: 'trabajosController', title:'@mzarallop - Proyectos que he desarrollado'})
 	.when('/colegios', {templateUrl:'dist/templates/colegios.html',controller: 'colegiosController', title:'@mzarallop - Colegios'})
 	.when('/fichacolegios/:rbd/', {templateUrl:'dist/templates/fichacolegios.html',controller: 'fichaController', title:'@mzarallop - Ficha Colegios'})
+	.when('/contacto', {templateUrl:'dist/templates/contacto.html', controller:'contactoController', title:'@mzarallop - Contacto'})
 	.otherwise({redirecTo:'/'});
 }])
 
@@ -123,6 +122,10 @@ app.controller("fichaController", ["$scope", "FichaColegios", "$routeParams", "$
     $window.history.back(-1);
   };
 }]);
+
+app.controller("contactoController", ["$scope", function($scope){
+  
+}])
 ;app.factory('ColegiosFac', ['$resource', function($resource){
 	return $resource(api+'welcome/index/:rbd', {rbd:'@_rbd'},
 		{ 'get':    {method:'GET', isArray:true, params:{rbd:0}},
@@ -2820,3 +2823,16 @@ app.service('colegiosService',['$http','$q', function($http, $q){
         regionalizacion: mostrarRegionalizacion
     }
 }]);
+
+app.service('contactoService', ['$http, $q', function($http, $q){
+    var deferred = $q.defer();
+    function enviarMensaje(datos){
+        $http.post(api+'welcome/contacto/', datos, {cache:true})
+        .success(function(data){deferred.resolve(data);})
+        return deferred.promise;
+    }
+
+    return {
+        contactar: enviarMensaje
+    }
+}])
