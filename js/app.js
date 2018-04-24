@@ -22,7 +22,7 @@ app.config(["$routeProvider","cfpLoadingBarProvider", "ChartJsProvider",function
 	.otherwise({redirecTo:'/'});
 }])
 
-.run(function($location, $rootScope, $windows) {
+.run(function($location, $rootScope, $window) {
 	$rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
 	     //mobile
 	 	$rootScope.host = window.location.origin+'/';
