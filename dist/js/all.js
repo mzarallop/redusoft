@@ -22,12 +22,12 @@ app.config(["$routeProvider","cfpLoadingBarProvider", "ChartJsProvider",function
 	.otherwise({redirecTo:'/'});
 }])
 
-.run(function($location, $rootScope, $windows) {
+.run(function($location, $rootScope) {
 	$rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
 	     //mobile
 	 	$rootScope.host = window.location.origin+'/';
 
-	 	 $window.ga('send', {
+	 	window.ga('send', {
 	      'hitType': 'screenview',
 	      'appName' : 'Redusoft App',
 	      'screenName' : $location.url(),
