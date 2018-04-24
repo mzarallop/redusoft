@@ -18,13 +18,23 @@ app.config(["$routeProvider","cfpLoadingBarProvider", "ChartJsProvider",function
 	.when('/colegios', {templateUrl:'dist/templates/colegios.html',controller: 'colegiosController', title:'@mzarallop - Colegios'})
 	.when('/fichacolegios/:rbd/', {templateUrl:'dist/templates/fichacolegios.html',controller: 'fichaController', title:'@mzarallop - Ficha Colegios'})
 	.when('/contacto', {templateUrl:'dist/templates/contacto.html', controller:'contactoController', title:'@mzarallop - Contacto'})
+	.when('/proyectos', {templateUrl:'dist/templates/proyectos.html', controller:'proyectoController', title:'@mzarallop - Proyecto'})
 	.otherwise({redirecTo:'/'});
 }])
 
-.run(function($location, $rootScope) {
+.run(function($location, $rootScope, $windows) {
 	$rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
 	     //mobile
 	 	$rootScope.host = window.location.origin+'/';
+
+	 	 $window.ga('send', {
+	      'hitType': 'screenview',
+	      'appName' : 'Redusoft App',
+	      'screenName' : $location.url(),
+	      'hitCallback': function() {
+	        console.log('GA hitCallback sent!');
+	      }
+	    }); 
 
 	})
 })

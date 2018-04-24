@@ -96,3 +96,7 @@ app.controller("fichaController", ["$scope", "FichaColegios", "$routeParams", "$
 app.controller("contactoController", ["$scope", function($scope){
   
 }])
+
+app.controller("proyectoController", ["$scope", function($scope){
+  
+}])
