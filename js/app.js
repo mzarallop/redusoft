@@ -30,9 +30,8 @@ app.config(["$routeProvider","cfpLoadingBarProvider", "ChartJsProvider",function
 	 	window.ga('send', {
 	      'hitType': 'screenview',
 	      'appName' : 'Redusoft App',
-	      'screenName' : $location.url(),
+	      'screenName' : $location.absUrl(),
 	      'hitCallback': function() {
-	        console.log('GA hitCallback sent!');
 	      }
 	    }); 
 
